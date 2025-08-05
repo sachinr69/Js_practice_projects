@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Button Effects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Color Change Hover */
+        .btn-color {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-color:hover {
+            background: #e74c3c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Scale and Glow Effect */
+        .btn-scale {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .btn-scale:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.6);
+        }
+
+        /* Slide Background */
+        .btn-slide {
+            background: #9b59b6;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #e67e22;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-slide:hover::before {
+            left: 0;
+        }
+
+        /* Gradient Shift */
+        .btn-gradient {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            background-size: 200% 200%;
+        }
+
+        .btn-gradient:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Border Expand */
+        .btn-border {
+            background: transparent;
+            color: white;
+            border: 2px solid #f39c12;
+            position: relative;
+        }
+
+        .btn-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #f39c12;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-border:hover::before {
+            width: 100%;
+        }
+
+        .btn-border:hover {
+            color: white;
+        }
+
+        /* Pulse Effect */
+        .btn-pulse {
+            background: #1abc9c;
+            color: white;
+            animation: pulse-base 2s infinite;
+        }
+
+        .btn-pulse:hover {
+            animation: pulse-hover 0.6s infinite;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse-base {
+            0% { box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(26, 188, 156, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(26, 188, 156, 0); }
+        }
+
+        @keyframes pulse-hover {
+            0% { box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.7); }
+            100% { box-shadow: 0 0 0 20px rgba(26, 188, 156, 0); }
+        }
+
+        /* Neon Glow */
+        .btn-neon {
+            background: #2c3e50;
+            color: #00ff88;
+            border: 2px solid #00ff88;
+            text-shadow: 0 0 10px #00ff88;
+        }
+
+        .btn-neon:hover {
+            background: #00ff88;
+            color: #2c3e50;
+            box-shadow: 
+                0 0 20px #00ff88,
+                0 0 40px #00ff88,
+                0 0 60px #00ff88;
+            text-shadow: none;
+        }
+
+        /* 3D Effect */
+        .btn-3d {
+            background: #e74c3c;
+            color: white;
+            box-shadow: 0 6px 0 #c0392b;
+            transform: translateY(0);
+        }
+
+        .btn-3d:hover {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #c0392b;
+        }
+
+        .btn-3d:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 #c0392b;
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Hover Buttons</h1>
+    
+    <div class="button-container">
+        <button class="btn btn-color">Color Change</button>
+        <button class="btn btn-scale">Scale & Glow</button>
+        <button class="btn btn-slide">Slide Background</button>
+        <button class="btn btn-gradient">Gradient Shift</button>
+        <button class="btn btn-border">Border Expand</button>
+        <button class="btn btn-pulse">Pulse Effect</button>
+        <button class="btn btn-neon">Neon Glow</button>
+        <button class="btn btn-3d">3D Effect</button>
+    </div>
+
+    <script>
+        // Add click handlers for demonstration
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const originalText = button.textContent;
+                button.textContent = 'Clicked!';
+                button.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.pointerEvents = 'auto';
+                }, 1000);
+            });
+        });
+
+        // Add some dynamic sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
+            sparkle.style.background = 'white';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.opacity = Math.random();
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Create sparkles periodically
+        setInterval(createSparkle, 500);
+    </script>
+</body>
+</html>
